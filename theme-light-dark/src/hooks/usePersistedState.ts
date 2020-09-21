@@ -1,6 +1,6 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-const Identify = '@Theme-';
+const Identify = '@Themes-';
 
 type Response<T> = [
   T,
