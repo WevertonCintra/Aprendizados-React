@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 
-import usePersistedState from './utils/usePersistedState';
+import GlobalStyle from './styles/global';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
-import GlobalStyle from './styles/global';
 import Header from './components/Header';
+import usePersistedState from './hooks/usePersistedState';
 
 const App = () => {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);

@@ -1,13 +1,17 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
+const Identify = '@Theme-';
+
 type Response<T> = [
   T,
   Dispatch<SetStateAction<T>>,
 ];
 
 function usePersistedState<T>(key: string, initialState: T): Response<T> {
+  const prefixedKey = Identify + key;
+
   const [state, setState] = useState(() => {
-    const storageValue = localStorage.getItem(key);
+    const storageValue = localStorage.getItem(prefixedKey);
 
     if (storageValue) {
       return JSON.parse(storageValue);
@@ -17,8 +21,8 @@ function usePersistedState<T>(key: string, initialState: T): Response<T> {
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
+    localStorage.setItem(prefixedKey, JSON.stringify(state));
+  }, [prefixedKey, state]);
 
   return [state, setState];
 }
